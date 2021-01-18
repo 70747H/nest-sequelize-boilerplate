@@ -13,8 +13,8 @@ import { Transform } from 'class-transformer';
 import { User } from '../users/user.entity';
 import { Consent } from '../consents/consent.entity';
 
-@Table({ tableName: 'user-consents'})
-export class UserConsents extends Model<UserConsents> {
+@Table({ tableName: 'users-consents'})
+export class UsersConsents extends Model<UsersConsents> {
 
   // @Transform(Consent => Consent.name)
   @Column({
@@ -44,7 +44,7 @@ export class UserConsents extends Model<UserConsents> {
     type: DataType.UUID,
     field: 'consent_id',
   })
-  consentId: number;
+  consentId: string;
 
   @ForeignKey(() => User)
   @Column({

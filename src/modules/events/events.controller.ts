@@ -15,7 +15,7 @@ import { TransformResponseInterceptor } from "../../interceptors/transform-respo
 import { Event } from "./event.entity";
 import { serialize } from "class-transformer";
 import { UsersService } from "../users/users.service";
-import { UserConsentsService } from "../user-consents/user-consents.service";
+import { UserConsentsService } from "../users-consents/users-consents.service";
 import { ConsentsService } from "../consents/consents.service";
 
 @Controller('events')
@@ -32,7 +32,7 @@ export class EventsController {
   @Post()
   async create(@Body(new ValidationPipe({ transform: true })) createEventDto: CreateEventDto): Promise<Event> {
     const { user, consents } = createEventDto;
-    const foundUser = await this.usersService.findUser(user.id);
+    const foundUser = await this.usersService.getUser(user.id);
     if(!foundUser)
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     await consents.map(async (consent) => {
@@ -41,7 +41,7 @@ export class EventsController {
       if(!foundUserConsent)
         await this.userConsentsService.createUserConsent({ user_id: foundUser.id, consent_id: foundConsent.id, enabled: consent.enabled });
       else
-        await this.userConsentsService.updateUserConsent(foundConsent.uid, { enabled: consent.enabled });
+        await this.userConsentsService.updateUserConsent(foundConsent.id, { enabled: consent.enabled });
     });
     createEventDto.user.id = foundUser.id;
     return this.eventsService.createEvent(createEventDto);

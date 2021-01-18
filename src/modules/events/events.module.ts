@@ -5,8 +5,8 @@ import {eventsProviders} from './events.providers';
 import {DatabaseModule} from '../../database/database.module';
 import { usersProviders } from '../users/users.providers';
 import { UsersService } from '../users/users.service';
-import { userConsentsProviders } from '../user-consents/user-consents.providers';
-import { UserConsentsService } from '../user-consents/user-consents.service';
+import { usersConsentsProviders } from '../users-consents/users-consents.providers';
+import { UserConsentsService } from '../users-consents/users-consents.service';
 import { consentsProviders } from '../consents/consents.providers';
 import { ConsentsService } from '../consents/consents.service';
 
@@ -17,7 +17,7 @@ import { ConsentsService } from '../consents/consents.service';
     UsersService,
     ...consentsProviders,
     ConsentsService,
-    ...userConsentsProviders,
+    ...usersConsentsProviders,
     UserConsentsService,
     ...eventsProviders,
     EventsService,

@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@nestjs/common';
-import { UserConsents } from './user.consents.entity';
+import { UsersConsents } from './users.consents.entity';
 import { CreateUserConsentsDto } from './dto/create-user-consents.dto';
 import { UpdateUserConsentsDto } from './dto/update-user-consents.dto';
 import { User } from '../users/user.entity';
@@ -8,7 +8,7 @@ import { User } from '../users/user.entity';
 export class UserConsentsService {
   constructor(
     @Inject('USER_CONSENTS_REPOSITORY')
-    private readonly usersConsentRepository: typeof UserConsents,
+    private readonly usersConsentRepository: typeof UsersConsents,
   ) {}
 
   createUserConsent = async (createUserConsentsDto: CreateUserConsentsDto) => {

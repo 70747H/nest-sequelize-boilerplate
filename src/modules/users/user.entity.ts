@@ -10,10 +10,10 @@ import {
     DeletedAt,
     HasMany,
 } from 'sequelize-typescript';
-import { UserConsents } from '../user-consents/user.consents.entity';
+import { UsersConsents } from '../users-consents/users.consents.entity';
 
 @Table({
-    tableName: 'user',
+    tableName: 'users',
 })
 export class User extends Model<User> {
     @Column({
@@ -40,6 +40,6 @@ export class User extends Model<User> {
     @Column({ field: 'deleted_at' })
     deletedAt: Date;
 
-    @HasMany(() => UserConsents)
-    consents: UserConsents[];
+    @HasMany(() => UsersConsents)
+    consents: UsersConsents[];
 }

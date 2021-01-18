@@ -1,4 +1,4 @@
-import { UserConsents } from '../user-consents/user.consents.entity';
+import { UsersConsents } from '../users-consents/users.consents.entity';
 import { Column, CreatedAt, DataType, DeletedAt, HasMany, Model, Table, UpdatedAt } from "sequelize-typescript";
 import { Transform } from 'class-transformer';
 
@@ -28,6 +28,6 @@ export class Consent extends Model<Consent> {
   @Column({ field: 'deleted_at' })
   deletedAt?: Date;
 
-  @HasMany(() => UserConsents)
-  consents: UserConsents[];
+  @HasMany(() => UsersConsents)
+  consents: UsersConsents[];
 }
